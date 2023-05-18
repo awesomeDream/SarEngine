@@ -24,6 +24,7 @@ public:
 
 	Vector4 operator*(const Vector4& vec);
 
+	void Identity(void);
 	// void transpose(void);
 	// void Inverse(void);
 

@@ -81,6 +81,16 @@ Vector4 Matrix4x4::operator*(const Vector4& vec)
 	return temp;
 }
 
+void Matrix4x4::Identity(void) {
+	for (int i = 0; i < 16; i++)
+		this->mat[i] = 1;
+	
+	this->mat[0] = 1;
+	this->mat[5] = 1;
+	this->mat[10] = 1;
+	this->mat[15] = 1;
+}
+
 Matrix4x4 Matrix4x4::scale(const Vector3& vec) {
 	Matrix4x4 ret;
 	ret.mat[0] = vec.x;

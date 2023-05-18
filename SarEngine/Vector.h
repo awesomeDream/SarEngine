@@ -31,6 +31,8 @@ public:
 	bool operator==(const Vector2& vec);
 
 public:
+	static Vector2 lerp(const Vector2& a, const Vector2& b, const float& t);
+
 	static float dot(const Vector2& vec1, const Vector2& vec2);
 
 	Vector2 normalized(void) const;
@@ -73,6 +75,8 @@ public:
 	bool operator==(const Vector3& vec);
 
 public:
+	static Vector3 lerp(const Vector3& a, const Vector3& b, const float& t);
+
 	static float dot(const Vector3& vec1, const Vector3& vec2);
 	static Vector3 cross(const Vector3& vec1, const Vector3& vec2);
 
@@ -118,12 +122,14 @@ public:
 	bool operator==(const Vector4& vec);
 
 public:
+	static Vector4 lerp(const Vector4& a, const Vector4& b, const float& t);
+	
 	static float dot(const Vector4& vec1, const Vector4& vec2);
 
 	Vector4 normalized(void) const;
 	Vector4& normalize(void);
 
-	Vector3 perspectiveProjection(void) const;
+	Vector4 perspectiveDivision(void) const;
 
 public:
 	float magnitude(void) const;

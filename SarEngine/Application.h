@@ -25,6 +25,9 @@ public:
 	void update(void);
 	void render(void);
 
+public:
+	void drawLine(float sx, float sy, float ex, float ey) const;
+
 private:
 	Application();
 	~Application();

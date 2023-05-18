@@ -2,6 +2,18 @@
 
 #include <Windows.h>
 
+#include "Camera.h"
+#include "Renderer.h"
+
+// Global Variables
+#include <cmath>
+
+const float PI = acosf(-1);
+
+Renderer* renderer;
+Camera* camera;
+Object* object;
+
 Application* Application::application = nullptr;
 
 Application* Application::GetInstance(void)
@@ -53,6 +65,16 @@ int Application::init(HWND _hWnd, POINT _ptResolution)
 	HBITMAP hOldBit = (HBITMAP)SelectObject(this->memDc, this->hBit);
 	DeleteObject(hOldBit);
 
+	renderer = new Renderer();
+	camera = new Camera(.1f, 20.f, 90 * PI / 180.f, this->ptResolution.x, this->ptResolution.y);
+	camera->SetPosition({ 0.f, 0.f, 10.f });
+	//camera->lookAt({ 0.f, 1.f, 0.f }, { 0.f, 0.f, 0.f });
+	renderer->setCamera(camera);
+
+	object = new Object();
+	object->getMesh()->loadCube();
+	object->setPosition({ 0, 0, 0 });
+
 	return S_OK;
 }
 
@@ -84,9 +106,12 @@ void Application::update(void)
 	if (GetAsyncKeyState(VK_DOWN) & 0x8001)
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8001)
 	if (GetAsyncKeyState(VK_LEFT) & 0x8001)
-	if (GetAsyncKeyState(0x57) & 0x8001) // w
-	if (GetAsyncKeyState(0x53) & 0x8001) // s
 	*/
+	Vector3 vec = { 0.f, 0.f, 0.01f };
+	if (GetAsyncKeyState(0x57) & 0x8001) // w
+		object->setPosition(object->getPosition() + vec);
+	if (GetAsyncKeyState(0x53) & 0x8001) // s
+		object->setPosition(object->getPosition() - vec);
 }
 
 void Application::render(void)
@@ -97,7 +122,7 @@ void Application::render(void)
 
 	// ===== RENDER =====
 
-
+	renderer->renderObject(*object, *this);
 
 	// ==================
 	
@@ -105,13 +130,13 @@ void Application::render(void)
 	// copy render hDc
 	BitBlt(this->hDc, 0, 0, this->ptResolution.x, this->ptResolution.y, this->memDc, 0, 0, SRCCOPY);
 }
-/*
-void Application::drawLine(float sx, float sy, float ex, float ey)
+
+void Application::drawLine(float sx, float sy, float ex, float ey) const
 {
 	MoveToEx(this->memDc, sx, sy, NULL);
 	LineTo(this->memDc, ex, ey);
 }
-
+/*
 void Application::fillTriangle(POINT p1, POINT p2, POINT p3)
 {
 	HBRUSH hBrush = CreateSolidBrush(RGB(0, 0, 255));

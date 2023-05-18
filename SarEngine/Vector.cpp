@@ -106,6 +106,12 @@ Vector2 Vector2::copy() const {
 	return { this->x, this->y };
 }
 
+Vector2 Vector2::lerp(const Vector2& a, const Vector2& b, const float& t)
+{
+	return { a.x * (1 - t) + b.x * t,
+			 a.y * (1 - t) + b.y * t, };
+}
+
 
 Vector3::Vector3(void)
 {
@@ -228,6 +234,13 @@ Vector3 Vector3::copy() const {
 	return { this->x, this->y, this->z };
 }
 
+Vector3 Vector3::lerp(const Vector3& a, const Vector3& b, const float& t)
+{
+	return { a.x * (1 - t) + b.x * t,
+			 a.y * (1 - t) + b.y * t,
+			 a.z * (1 - t) + b.z * t, };
+}
+
 
 Vector4::Vector4(void)
 {
@@ -348,11 +361,11 @@ Vector4& Vector4::normalize()
 	return *this;
 }
 
-Vector3 Vector4::perspectiveProjection(void) const
+Vector4 Vector4::perspectiveDivision(void) const
 {
-	if (this->w == 0.f) throw "ERROR::Vector4 [ Zero Division (perspectiveProjection) ]";
+	if (this->w == 0.f) throw "ERROR::Vector4 [ Zero Division (perspectiveDivision) ]";
 
-	return { this->x / this->w, this->y / this->w, this->z / this->w };
+	return { this->x / this->w, this->y / this->w, this->z / this->w, 1 };
 }
 
 float Vector4::magnitude() const
@@ -362,4 +375,12 @@ float Vector4::magnitude() const
 
 Vector4 Vector4::copy() const {
 	return { this->x, this->y, this->z, this->w };
+}
+
+Vector4 Vector4::lerp(const Vector4& a, const Vector4& b, const float& t)
+{
+	return { a.x * (1 - t) + b.x * t,
+			 a.y * (1 - t) + b.y * t,
+			 a.z * (1 - t) + b.z * t,
+			 a.w * (1 - t) + b.w * t, };
 }

@@ -22,6 +22,12 @@
     <Filter Include="소스 파일\Object">
       <UniqueIdentifier>{5a247d87-71b6-4e29-acd7-7b66c33b8624}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\SarEngine">
+      <UniqueIdentifier>{ea5a687b-20bb-466e-8a75-dc31cc423988}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Data Structure">
+      <UniqueIdentifier>{0e2a3ad0-6523-422b-8e29-f582c78e28ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -33,7 +39,7 @@
     <ClInclude Include="Resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SarEngine.h">
+    <ClInclude Include="Main.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Application.h">
@@ -48,9 +54,21 @@
     <ClInclude Include="Axis.h">
       <Filter>소스 파일\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>소스 파일\SarEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>소스 파일\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>소스 파일\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>소스 파일\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SarEngine.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Application.cpp">
@@ -61,6 +79,15 @@
     </ClCompile>
     <ClCompile Include="Matrix.cpp">
       <Filter>소스 파일\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>소스 파일\SarEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>소스 파일\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.h">
+      <Filter>소스 파일\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
