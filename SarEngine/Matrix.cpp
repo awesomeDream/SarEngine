@@ -83,7 +83,7 @@ Vector4 Matrix4x4::operator*(const Vector4& vec)
 
 void Matrix4x4::Identity(void) {
 	for (int i = 0; i < 16; i++)
-		this->mat[i] = 1;
+		this->mat[i] = 0;
 	
 	this->mat[0] = 1;
 	this->mat[5] = 1;

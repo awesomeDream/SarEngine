@@ -66,7 +66,7 @@ int Application::init(HWND _hWnd, POINT _ptResolution)
 	DeleteObject(hOldBit);
 
 	renderer = new Renderer();
-	camera = new Camera(.1f, 20.f, 90 * PI / 180.f, this->ptResolution.x, this->ptResolution.y);
+	camera = new Camera(.1f, 10.f, 90 * PI / 180.f, this->ptResolution.x, this->ptResolution.y);
 	camera->SetPosition({ 0.f, 0.f, 10.f });
 	//camera->lookAt({ 0.f, 1.f, 0.f }, { 0.f, 0.f, 0.f });
 	renderer->setCamera(camera);
@@ -101,16 +101,16 @@ void Application::update(void)
 
 	Application* application = Application::GetInstance();
 
-	/*
-	if (GetAsyncKeyState(VK_UP) & 0x8001)
-	if (GetAsyncKeyState(VK_DOWN) & 0x8001)
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8001)
-	if (GetAsyncKeyState(VK_LEFT) & 0x8001)
-	*/
+	Vector3 v = { 0.01f, 0.f, 0.f };
 	Vector3 vec = { 0.f, 0.f, 0.01f };
-	if (GetAsyncKeyState(0x57) & 0x8001) // w
+
+	if (GetAsyncKeyState(VK_RIGHT) & 0x8001)
+		object->setPosition(object->getPosition() - v);
+	if (GetAsyncKeyState(VK_LEFT) & 0x8001)
+		object->setPosition(object->getPosition() + v);
+	if (GetAsyncKeyState(VK_UP) & 0x8001)
 		object->setPosition(object->getPosition() + vec);
-	if (GetAsyncKeyState(0x53) & 0x8001) // s
+	if (GetAsyncKeyState(VK_DOWN) & 0x8001)
 		object->setPosition(object->getPosition() - vec);
 }
 

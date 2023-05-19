@@ -183,6 +183,8 @@ void Renderer::renderObject(Object& object, Application& app)
         in[2] = mvp * p2;
         
         int cnt = clipping(in, out);
+        //int cnt = 3;
+        //for (int j = 0; j < 3; j++) out[j] = in[j];
 
         for (int j = 0; j < cnt - 2; j++)
         {
