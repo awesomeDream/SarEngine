@@ -3,6 +3,7 @@
 #include "Matrix.h"
 #include "Camera.h"
 #include "Object.h"
+#include "Mesh.h"
 
 #define EPSILON 1e-5f
 #define CLIP_MAX 50

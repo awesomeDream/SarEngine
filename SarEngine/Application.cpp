@@ -4,6 +4,7 @@
 
 #include "Camera.h"
 #include "Renderer.h"
+#include "Mesh.h"
 
 // Global Variables
 #include <cmath>
@@ -66,14 +67,19 @@ int Application::init(HWND _hWnd, POINT _ptResolution)
 	DeleteObject(hOldBit);
 
 	renderer = new Renderer();
-	camera = new Camera(.1f, 10.f, 90 * PI / 180.f, this->ptResolution.x, this->ptResolution.y);
-	camera->SetPosition({ 0.f, 0.f, 10.f });
+	camera = new Camera(.1f, 500.f, 90 * PI / 180.f, this->ptResolution.x, this->ptResolution.y);
+	camera->SetPosition({ 0.f, 0.f, 100.f });
 	//camera->lookAt({ 0.f, 1.f, 0.f }, { 0.f, 0.f, 0.f });
 	renderer->setCamera(camera);
 
 	object = new Object();
-	object->getMesh()->loadCube();
+	//object->getMesh()->loadCube();
+	
+	object->getMesh()->loadObjFile("./Assets/horse.obj");
 	object->setPosition({ 0, 0, 0 });
+	object->setScale({ 0.4f, 0.4f, 0.4f });
+	object->setRotation({ 90.f, 0.f, 90.f });
+
 
 	return S_OK;
 }
@@ -101,17 +107,26 @@ void Application::update(void)
 
 	Application* application = Application::GetInstance();
 
-	Vector3 v = { 0.01f, 0.f, 0.f };
-	Vector3 vec = { 0.f, 0.f, 0.01f };
+	Vector3 e1 = { 0.01f, 0.f, 0.f };
+	Vector3 e2 = { 0.f, 0.01f, 0.f };
+	Vector3 e3 = { 0.f, 0.f, 0.01f };
+	
+	e1 *= 500.f;
+	e2 *= 500.f;
+	e3 *= 500.f;
 
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8001)
-		object->setPosition(object->getPosition() - v);
+		object->setPosition(object->getPosition() - e1);
 	if (GetAsyncKeyState(VK_LEFT) & 0x8001)
-		object->setPosition(object->getPosition() + v);
+		object->setPosition(object->getPosition() + e1);
 	if (GetAsyncKeyState(VK_UP) & 0x8001)
-		object->setPosition(object->getPosition() + vec);
+		object->setPosition(object->getPosition() + e2);
 	if (GetAsyncKeyState(VK_DOWN) & 0x8001)
-		object->setPosition(object->getPosition() - vec);
+		object->setPosition(object->getPosition() - e2);
+	if (GetAsyncKeyState(0x68) & 0x8001)
+		object->setPosition(object->getPosition() + e3);
+	if (GetAsyncKeyState(0x62) & 0x8001)
+		object->setPosition(object->getPosition() - e3);
 }
 
 void Application::render(void)
